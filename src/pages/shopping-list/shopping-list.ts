@@ -29,11 +29,8 @@ export class ShoppingListPage {
     this.ingredients = this.shoppingListService.getItems();
   }
 
-  onRemoveItem(ingredient: Ingredient) {
-    const position = this.ingredients.findIndex((ingredientEl: Ingredient) => {
-      return ingredientEl.name == ingredient.name;
-    });
-    this.shoppingListService.removeItem(position);
+  onCheckItem(index: number) {
+    this.shoppingListService.removeItem(index);
     this.loadIngredients();
   }
 
