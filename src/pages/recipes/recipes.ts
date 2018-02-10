@@ -27,6 +27,10 @@ export class RecipesPage {
     });
   }
 
+  onLoadRecipe() {
+
+  }
+
   loadRecipes() {
     this.recipes = this.recipesService.getRecipes();
   }
