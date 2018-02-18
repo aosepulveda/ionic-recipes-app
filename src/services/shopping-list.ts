@@ -27,7 +27,7 @@ export class ShoppingListService {
     return this.ingredients.slice(); // GET A COPY
   }
 
-  storeList(token: string){
+  storeList(token: string) {
     //this.http.get('my-url')
     const userId = this.authService.getActiveUser().uid;
 
@@ -37,5 +37,17 @@ export class ShoppingListService {
       .map((response: Response) => {
         return response;
       });
+  }
+
+  fetchList(token: string) {
+    const userId = this.authService.getActiveUser().uid;
+
+    return this.http.get('https://ionic2-recipes-app.firebaseio.com/' + userId + '/shopping-list.json?auth=' + token)
+      .map((response: Ingredient[]) => {
+        return response;
+      })
+      .do((data) => {
+        this.ingredients = data;
+      })
   }
 }
